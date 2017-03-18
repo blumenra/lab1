@@ -7,7 +7,7 @@ int main(int argc, char** argv){
 
 		printf("%s ", argv[i]);
 	}
-	printf("\n"); //new line at the end
+	puts(""); //new line at the end
 
 	return 0;
 }

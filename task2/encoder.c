@@ -12,7 +12,6 @@ int main(int argc, char** argv){
 	FILE* input = stdin;
 	FILE* output = stdout;
 
-
 	if(argc < 2){
 
 		while((c = fgetc(input))!=(EOF)){
@@ -24,8 +23,10 @@ int main(int argc, char** argv){
 		}
 	}
 	else{
+		arg[0] = argv[1][0];
+		arg[1] = argv[1][1];
+
 		if(argc > 2){
-			
 			for(i=1; i<argc; i++){
 				
 				if(strcmp(argv[i],"-i")==0){
@@ -49,7 +50,7 @@ int main(int argc, char** argv){
 					output = outputFile;
 
 				}
-				else if((argv[i][0] == 43) || (argv[i][0] == 45)){
+				else if((argv[i][0] == '+') || (argv[i][0] == '-')){
 					
 					for(j=0; j<2; j++){
 						arg[j] = argv[i][j];
@@ -58,16 +59,16 @@ int main(int argc, char** argv){
 			}
 		}
 
-		if(arg[0] == 43){
-			
+		if(arg[0] == '+'){
+
 			while((c = fgetc(input))!=EOF){
+				
+				if((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')){
 
-				if((c >= 97 && c <= 122) || (c >= 65 && c <= 90)){
-
-					if(c >= 65 && c <= 90)
+					if(c >= 'A' && c <= 'Z')
 						c += 32;
 						
-					if(c+(arg[1]-48) > 122){
+					if(c+(arg[1]-48) > 'z'){
 						c = ((c+arg[1]-48)%122)+96;
 					}
 					else{
@@ -79,15 +80,15 @@ int main(int argc, char** argv){
 
 		}
 
-		else if(arg[0] == 45){
+		else if(arg[0] == '-'){
 			
 			while((c = fgetc(input))!=EOF){
 
-				if((c >= 97 && c <= 122) || (c >= 65 && c <= 90)){
-					if(c >= 65 && c <= 90)
+				if((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')){
+					if(c >= 'A' && c <= 'Z')
 						c += 32;
 						
-					if(c-(arg[1]-48) < 97){
+					if(c-(arg[1]-48) < 'a'){
 						c = (c-(arg[1]-48))+26;
 					}
 					else{

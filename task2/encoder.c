@@ -23,10 +23,8 @@ int main(int argc, char** argv){
 		}
 	}
 	else{
-		arg[0] = argv[1][0];
-		arg[1] = argv[1][1];
 
-		if(argc > 2){
+		if(argc >= 2){
 			for(i=1; i<argc; i++){
 				
 				if(strcmp(argv[i],"-i")==0){
